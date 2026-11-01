@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECE-profils</title>
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body class = "min-h-screen bg-slate-950 text-white">
+    <header class = "w-full bg-slate-900">
+    <div class="mx-auto max-w-7xl px-4 py-4">
+        <a href="#" class ="flex items-center gap-2">
+      <span>👑</span>
+      </a>
+    </div>
+    </header>
+    <main class="mx-auto max-w-7xl px-4 py-4">
+        <h1>Players profiles</h1>
+        <form id="profile-form">
+            <label for="nickname">Nickname</label>
+         <input type="text" id="nickname" name="nickname" minlength="3" maxlength="15" pattern="[A-Za-z0-9*]{3,15}" required>
+         <span id="nickname-error" class="text-red-500 text-sm"></span>
+         <label for="avatar">Avatar</label>
+         <select id="avatar" name="avatar" required>
+            <option value="">choose an avatar</option>
+            <option value="dragon">Dragon</option>
+            <option value="knight">Knight</option>
+            <option value="wizard">Wizard</option>
+            <option value="shadow">Shadow</option>
+         </select>
+         <button type="submit">Create profile</button>
+        </form>
+        <div id="players-list"></div>
+    </main>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
