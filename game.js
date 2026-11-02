@@ -1,0 +1,3 @@
+function duel(carteJoueur, carteOrdinateur) {
+
+}
