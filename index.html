@@ -18,19 +18,22 @@
         <h1>Players profiles</h1>
         <form id="profile-form" class ="bg-slate-900 rounded-xl p-4 sm:p-6 space-y-4" >
             <label for="nickname">Nickname</label>
-         <input type="text" id="nickname" name="nickname" minlength="3" maxlength="15" pattern="[A-Za-z0-9*]{3,15}" required>
+         <input type="text" id="nickname" name="nickname" minlength="3" maxlength="15" pattern="[A-Za-z0-9*]{3,15}" required 
+         class="block w-full rounded-lg border border-slate-600 p-3 ">
          <span id="nickname-error" class="text-red-500 text-sm"></span>
          <label for="avatar">Avatar</label>
-         <select id="avatar" name="avatar" required>
+         <select id="avatar" name="avatar" required
+         class="block w-full rounded-lg border border-slate-600 bg-slate-950 p-3 text-white">
             <option value="">choose an avatar</option>
             <option value="dragon">Dragon</option>
             <option value="knight">Knight</option>
             <option value="wizard">Wizard</option>
             <option value="shadow">Shadow</option>
          </select>
-         <button type="submit">Create profile</button>
+         <button type="submit"
+          class="w-full rounded-lg bg-amber-400 px-4 py-3 font-semibold text-slate-950">Create profile</button>
         </form>
-        <div id="players-list"></div>
+        <div id="players-list" class="grid grid-col-1 sm:grid-col-2 lg:grid-col-3 gap-4 mt-6"></div>
     </main>
     <script type="module" src="./main.js"></script>
 </body>
