@@ -1,4 +1,15 @@
 export function showplayer(player,playersList){
+    export function showplayerinselect(players,playerselect){
+        playerselect.innerhtml = '<option value="">Select a player </option>';
+         player.forEach((player) => {
+            const option = document.createElement("option");
+             option.value = player.id;
+             option.textContent = player.nickname;
+
+             playerselect.appendChild(option);
+         });
+
+    }
      const buttons = document.createElement("div");
     buttons.className = "flex flex-wrap gap-2 mt-4"
     /// kansaybo card jdida l each player

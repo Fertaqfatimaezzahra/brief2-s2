@@ -1,13 +1,17 @@
-  import { showplayer } from "./ui.js";
+  import { showplayer,showplayerinselect } from "./ui.js";
   import { deleteplayer,updateplayerinfo } from "./players.js";
    import {getplayers, saveplayers} from "./storage.js";
 
 const form = document.getElementById("profile-form");
 const playersList = document.getElementById("players-list");
+const playerSelect = document.getElementById("selected-player");
+showplayerinselect(players,playerSelect);
+playerSelect.value = localStorage.getItem("selectedplayer") || "" ; 
+
              ////// hna bdina event delegation 
 let players = getplayers();
 let editingid = null;
-
+ 
       playersList.addEventListener("click",(event)=>{
  const button = event.target.closest("button[data-action]");
     if(!button) return;
