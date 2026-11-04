@@ -33,7 +33,14 @@
          <button type="submit"
           class="w-full rounded-lg bg-amber-400 px-4 py-3 font-semibold text-slate-950">Create profile</button>
         </form>
-        <div id="players-list" class="grid grid-col-1 sm:grid-col-2 lg:grid-col-3 gap-4 mt-6"></div>
+
+        <!-- select player -->
+         <label for="selecte-player"> Choose a player</label>
+         <select id="selecte-player" class="w-full rounded-lg bg-slate-900 p-3">
+            <option value="">Select a player </option>
+         </select>
+         
+        <div id="players-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"></div>
     </main>
     <script type="module" src="./main.js"></script>
 </body>

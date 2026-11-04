@@ -22,6 +22,7 @@ const games = document.createElement("p");
 games.textContent = "0 Games";
 games.className = "text-sm text-slate-400 mt-1";
 card.appendChild(games);
+///// delete button
     const deletebtn = document.createElement("button");
     deletebtn.className = "bg-red-600 text-white px-4 py-2 rounded-lg font-semibold";
     deletebtn.textContent = "Delete";
