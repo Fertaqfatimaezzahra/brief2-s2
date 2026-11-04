@@ -4,13 +4,15 @@
 
 const form = document.getElementById("profile-form");
 const playersList = document.getElementById("players-list");
-const playerSelect = document.getElementById("selected-player");
-showplayerinselect(players,playerSelect);
-playerSelect.value = localStorage.getItem("selectedplayer") || "" ; 
+ 
 
              ////// hna bdina event delegation 
 let players = getplayers();
 let editingid = null;
+
+const playerSelect = document.getElementById("selected-player");
+showplayerinselect(players,playerSelect);
+playerSelect.value = localStorage.getItem("selectedplayer") || "" ;
  
       playersList.addEventListener("click",(event)=>{
  const button = event.target.closest("button[data-action]");
