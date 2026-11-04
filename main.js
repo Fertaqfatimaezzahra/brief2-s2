@@ -1,6 +1,7 @@
   import { showplayer,showplayerinselect } from "./ui.js";
   import { deleteplayer,updateplayerinfo } from "./players.js";
-   import {getplayers, saveplayers} from "./storage.js";
+  import {getplayers, saveplayers} from "./storage.js";
+  import {duel,creategame, playround} from "./game.js";
 
 const form = document.getElementById("profile-form");
 const playersList = document.getElementById("players-list");
@@ -9,6 +10,57 @@ const playersList = document.getElementById("players-list");
              ////// hna bdina event delegation 
 let players = getplayers();
 let editingid = null;
+                     // GAME
+const gamecards = document.getElementById("game-cards");
+const roundtext = document.getElementById("round");
+const camptext = document.getElementById("camp");
+const scoretext = document.getElementById("score");
+const resulttext = document.getElementById("game-result");
+let game = null;
+const startgamebutton = document.getElementById("start-game");
+ startgamebutton.addEventListener("click",() => {
+      const selectedplayerid = document.getElementById("selected-player").value;
+      if(selectedplayerid===""){
+        resulttext.textContent = "Please select a player first!";
+        return;
+      }
+      game = creategame(selectedplayerid);
+      resulttext.textContent="Game started";
+      updategameui();
+      
+ });
+function updategameui(){
+  if(game===null)return;
+
+  roundtext.textContent= `Round : ${game.round} / 12 `;
+  camptext.textContent= `Camp: ${game.camp} `;
+  scoretext.textContent= `Player : ${game.playerscore} | Computer : ${game.computerscore} `;
+
+}
+
+//**showing game cards */
+gamecards.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-card]");
+    if(!button)return;
+    if(game===null || game.finished) return;
+    const playercard = button.dataset.card;
+    const cards=["empereur", "citoyen", "esclave"];
+   const computercard = cards[Math.floor(Math.random() * cards.length)];
+    const result = duel(playercard,computercard);
+    playround(game, playercard, computercard);
+    resulttext.textContent = `You: ${playercard} | Computer: ${computercard} | Result: ${result}`;
+    updategameui();
+    if(game.finished){
+        const winner=
+         game.playerscore > game.computerscore ? "Player wins!" :
+            game.playerscore < game.computerscore ? "Computer wins!" :
+            "Draw!";
+            resulttext.textContent+= `Game over ${winner}`    
+    }
+});
+
+
+
 
 const playerSelect = document.getElementById("selected-player");
 showplayerinselect(players,playerSelect);

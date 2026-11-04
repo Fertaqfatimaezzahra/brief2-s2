@@ -40,7 +40,33 @@
             <option value="">Select a player </option>
          </select>
          
-        <div id="players-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"></div>
+       
+      <div id="players-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"></div>
+
+      <!-- gamesection -->
+       <section id="game" class="bg-slate-900 rounded-xl p-4 mt-6 space-y-4">
+         <h2 class="text-amber-400">Game Arena</h2>
+         <p id="round">Round: 1 / 12</p>
+         <p id="camp">Camp: Empereur</p>
+         <p id="score">Player: 0 | Computer: 0</p>
+         <button id="start-game" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
+            Start game
+         </button>
+         <div id="game-cards"class="flex flex-wrap gap-4">
+            <button data-card="Empereur" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
+                Empereur
+            </button>
+            <button data-card="Empereur" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
+                Citoyen
+            </button>
+            <button data-card="Empereur" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
+                Esclave
+            </button>
+
+         </div>
+         <p id="game-result"></p>
+    
+       </section>
     </main>
     <script type="module" src="./main.js"></script>
 </body>
