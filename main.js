@@ -37,7 +37,7 @@ function updategameui(){
   scoretext.textContent= `Player : ${game.playerscore} | Computer : ${game.computerscore} `;
   buttons.forEach((button)=>{
 
-    
+
   })
   const buttons = gamecards.querySelectorAll("button[data-card]");
 
@@ -49,8 +49,9 @@ gamecards.addEventListener("click", (event) => {
     if(!button)return;
     if(game===null || game.finished) return;
     const playercard = button.dataset.card;
-    const cards=["empereur", "citoyen", "esclave"];
-   const computercard = cards[Math.floor(Math.random() * cards.length)];
+    
+   const computercard = game.computercards[
+    Math.floor(Math.random() *  game.computercards.length)];
     const result = duel(playercard,computercard);
     playround(game, playercard, computercard);
     console.log("SELECTED CARD:", playercard);

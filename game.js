@@ -1,10 +1,10 @@
-export function duel(playercard, carteordinateur) {
-    if(playercard === carteordinateur){
+export function duel(playercard, computercard) {
+    if(playercard ===computercard ){
         return "equal";
     }
-    if(playercard==="empereur" && carteordinateur==="citoyen" ||
-        playercard==="esclave" && carteordinateur==="empereur" ||
-        playercard==="citoyen" && carteordinateur==="esclave"){
+    if(playercard==="empereur" && computercard==="citoyen" ||
+        playercard==="esclave" && computercard==="empereur" ||
+        playercard==="citoyen" && computercard==="esclave"){
            return "win"; 
         }
       return "defeat";   
@@ -19,15 +19,28 @@ export function creategame(playerid){
         playerscore:0,
         computerscore:0,
         camp:"empereur",
+        playercards:["empereur", "citoyen", "citoyen", "citoyen", "citoyen"],
+        computercards: ["esclave", "citoyen", "citoyen", "citoyen", "citoyen"],
         finished: false 
     };
 }
 
-export function playround(game,playercard,computerCard){
+export function playround(game,playercard,computercard){
    if(game.finished){
      return game;
    }
- const result = duel(playercard,computerCard);
+   const playercardindex = game.playercards.findIndex(card=>card===playercard);
+const computercardindex = game.computercards.findIndex(card=>card===computercard);
+   if(playercardindex===-1||computercardindex===-1){
+    return game;
+   }
+   game.playercards.splice(playercardindex,1);
+   game.computercards.splice(computercardindex,1);
+
+
+
+
+ const result = duel(playercard,computercard);
      if(result==="win"){
         game.playerscore++;
      }
@@ -41,10 +54,16 @@ export function playround(game,playercard,computerCard){
      }
      if(game.round === 4 || game.round === 7 || game.round === 10){
         if(game.camp ==="empereur"){
-            game.camp ="esclave"
+            game.camp ="esclave";
+            game.playercards=["esclave", "citoyen", "citoyen", "citoyen", "citoyen"];
+            game.computercards=["empereur", "citoyen", "citoyen", "citoyen", "citoyen"];
         }else{
             game.camp ="empereur";
+             game.playercards=["empereur", "citoyen", "citoyen", "citoyen", "citoyen"];
+             game.computercards= ["esclave", "citoyen", "citoyen", "citoyen", "citoyen"];
+
         }
+
      }
      console.log("ROUND:", game.round);
 console.log("CAMP:", game.camp);
