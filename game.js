@@ -41,10 +41,14 @@ export function playround(game,playercard,computerCard){
      }
      if(game.round === 4 || game.round === 7 || game.round === 10){
         if(game.camp ==="empereur"){
-            game.camp ==="empereur"
+            game.camp ="esclave"
         }else{
-            game.camp ==="esclave";
+            game.camp ="empereur";
         }
      }
+     console.log("ROUND:", game.round);
+console.log("CAMP:", game.camp);
+console.log("RESULT:", result);
+console.log("SCORE:", game.playerscore, game.computerscore);
      return game;
 }

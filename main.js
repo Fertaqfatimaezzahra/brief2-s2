@@ -35,6 +35,11 @@ function updategameui(){
   roundtext.textContent= `Round : ${game.round} / 12 `;
   camptext.textContent= `Camp: ${game.camp} `;
   scoretext.textContent= `Player : ${game.playerscore} | Computer : ${game.computerscore} `;
+  buttons.forEach((button)=>{
+
+    
+  })
+  const buttons = gamecards.querySelectorAll("button[data-card]");
 
 }
 
@@ -48,6 +53,8 @@ gamecards.addEventListener("click", (event) => {
    const computercard = cards[Math.floor(Math.random() * cards.length)];
     const result = duel(playercard,computercard);
     playround(game, playercard, computercard);
+    console.log("SELECTED CARD:", playercard);
+console.log("COMPUTER CARD:", computercard);
     resulttext.textContent = `You: ${playercard} | Computer: ${computercard} | Result: ${result}`;
     updategameui();
     if(game.finished){
