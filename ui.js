@@ -51,3 +51,27 @@ card.appendChild(games);
          });
 
     }
+    // show cards and make them clickable
+ export function showgamecards(cards,container){
+    container.innerHTML="";
+    cards.forEach((card) =>{
+        const button = document.createElement("button")
+   button.dataset.card = card ;
+   button.textContent = card;
+
+   button.className= "aspect-[2/3] min-w-0 rounded-lg border border-amber-400 bg-slate-800 text-amber-400 text-[10px] sm:text-sm hover:bg-slate-700 transition"
+   container.appendChild(button);
+
+    }
+)};
+    export function showcomputercards(cards,container){
+        container.innerHTML="";
+    cards.forEach((card) =>{
+        const cardback = document.createElement("div")
+   cardback.textContent = "♛";
+
+   cardback.className= "aspect-[2/3] min-w-0 rounded-lg border border-amber-400 bg-slate-950 flex items-center justify-center text-xl sm:text-3xl"
+   container.appendChild(cardback);
+
+    }
+)};
