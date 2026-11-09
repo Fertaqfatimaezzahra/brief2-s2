@@ -3,58 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECE-profils</title>
+    <title>ECE - Game</title>
     <link rel="stylesheet" href="./src/output.css">
 </head>
 <body class = "min-h-screen bg-slate-950 text-white">
-   
-    <main>
+       <header class = "w-full bg-slate-900 border-b border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 py-4 flex flex-wrap items-center justify-between gap-3">
+        <a href="index.html" class ="flex items-center gap-2 font-bold text-amber-400">
+      <span>👑</span><span>ECE</span>
+      </a>
+      <nav class="flex flex-wrap gap-6 sm:gap-16">
+      <a href="index.html" class="text-slate-300 hover:text-amber-400 transition">Home</a>
+      <a href="game.html" class="font-semibold text-amber-400" aria-current="page">Game</a>
+      <a href="history.html" class="text-slate-300 hover:text-amber-400 transition">History</a>
+    </nav>
+      <p class="w-full sm:w-auto text-sm text-slate-400">Player: <span id="current-player" class="font-semibold text-white">No player selected</span></p>
+    </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 py-6">
       <!-- gamesection -->
-       <section id="game" class="bg-slate-900 rounded-xl p-4 mt-6 space-y-4">
-         <h2 class="text-amber-400">Game Arena</h2>
-         <p id="round">Round: 1 / 12</p>
-         <p id="camp">Camp: Empereur</p>
-         <p id="score">Player: 0 | Computer: 0</p>
-         <label for="selected-player">Choose player</label>
-         <select id="selected-player" class="w-full rounded-lg bg-slate-800 text-white">
-            <option valur="">Select a player</option>
+       <section id="game" class="bg-slate-900 rounded-xl p-4 sm:p-6 space-y-4">
+         <h2 class="text-2xl font-bold text-amber-400">Game Arena</h2>
+
+         <!-- status -->
+         <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-sm">
+            <div class="rounded-lg bg-slate-800 p-3">
+                <p class="text-slate-400">Round</p>
+                <p id="round" class="font-semibold">1 / 12</p>
+            </div>
+            <div class="rounded-lg bg-slate-800 p-3">
+                <p class="text-slate-400">Group</p>
+                <p id="group" class="font-semibold">1 / 4</p>
+            </div>
+            <div class="rounded-lg bg-slate-800 p-3">
+                <p class="text-slate-400">Your camp</p>
+                <p id="camp" class="font-semibold">👑 Empereur</p>
+            </div>
+            <div class="rounded-lg bg-slate-800 p-3">
+                <p class="text-slate-400">Plays first</p>
+                <p id="first-player" class="font-semibold">👑 Empereur (you)</p>
+            </div>
+            <div class="col-span-2 sm:col-span-1 rounded-lg bg-slate-800 p-3">
+                <p class="text-slate-400">Score</p>
+                <p id="score" class="font-semibold">You 0 - 0 Computer</p>
+            </div>
+         </div>
+
+         <div class="flex flex-col sm:flex-row sm:items-end gap-3">
+            <div class="flex-1 space-y-1">
+         <label for="selected-player" class="block text-sm text-slate-300">Choose player</label>
+         <select id="selected-player" class="w-full rounded-lg border border-slate-600 bg-slate-800 p-3 text-white hover:border-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 transition">
+            <option value="">Select a player</option>
          </select>
-         <button id="start-game" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
+            </div>
+         <button id="start-game" type="button" disabled
+         class="bg-amber-400 text-slate-950 font-semibold p-3 px-6 rounded-lg hover:bg-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 disabled:bg-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed transition">
             Start game
          </button>
+         </div>
+
          <!-- computercards -->
          <h3 class="text-center text-amber-400"> Computer Cards</h3>
-          <div id="computer-cards" 
+          <div id="computer-cards"
           class="grid grid-cols-5 gap-1 sm:gap-3 max-w-2xl mx-auto">
 
 
           </div>
     <!-- duel arena -->
-     <div class="grid grid-cols-2 gap-4 my-8">
+     <div class="grid grid-cols-2 gap-4 my-8 max-w-2xl mx-auto">
     <div id="player-played-card"
-         class="min-h-32 rounded-xl border border-amber-400/40 bg-slate-800 flex items-center justify-center text-amber-400">
+         class="min-h-32 rounded-xl border border-amber-400/40 bg-slate-800 flex items-center justify-center text-amber-400 perspective-normal">
         Your Card
     </div>
 
     <div id="computer-played-card"
-         class="min-h-32 rounded-xl border border-amber-400/40 bg-slate-800 flex items-center justify-center text-amber-400">
+         class="min-h-32 rounded-xl border border-amber-400/40 bg-slate-800 flex items-center justify-center text-amber-400 perspective-normal">
         Computer Card
     </div>
 </div>
 
+         <p id="game-result" class="text-center min-h-6" aria-live="polite">Select a player, then press "Start game".</p>
+
+         <!-- fin de partie -->
+         <div id="game-over" class="hidden max-w-2xl mx-auto rounded-xl border border-amber-400 bg-slate-800 p-6 text-center space-y-3">
+            <p data-gameover-title class="text-2xl font-bold text-amber-400"></p>
+            <p data-gameover-score class="text-slate-300"></p>
+            <button id="replay-button" type="button"
+            class="bg-amber-400 text-slate-950 font-semibold py-3 px-6 rounded-lg hover:bg-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 transition">
+                Play again
+            </button>
+         </div>
+
  <!-- playercards -->
          <h3 class="text-center text-amber-400"> Your Cards</h3>
-          <div id="player-cards" 
+          <div id="player-cards"
           class="grid grid-cols-5 gap-1 sm:gap-3 max-w-2xl mx-auto">
 
 
           </div>
 
-
-         <p id="game-result"></p>
-    
        </section>
     </main>
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </body>
 </html>

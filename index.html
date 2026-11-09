@@ -3,79 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECE-profils</title>
+    <title>ECE - Profiles</title>
     <link rel="stylesheet" href="./src/output.css">
 </head>
 <body class = "min-h-screen bg-slate-950 text-white">
-    <header class = "w-full bg-slate-900">
-    <div class="mx-auto max-w-7xl px-4 py-4 flex flex-wrap justify-between ">
-        <a href="#" class ="flex items-center gap-2">
-      <span>👑</span>
+    <header class = "w-full bg-slate-900 border-b border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 py-4 flex flex-wrap items-center justify-between gap-3">
+        <a href="index.html" class ="flex items-center gap-2 font-bold text-amber-400">
+      <span>👑</span><span>ECE</span>
       </a>
-      <nav class="flex flex-warp gap-16"> 
-      <a href="index.html" class= > home</a>
-      <a href="game.html" class= > game</a>
-      <a href="history.html" class= > history</a>
-    
-
+      <nav class="flex flex-wrap gap-6 sm:gap-16">
+      <a href="index.html" class="font-semibold text-amber-400" aria-current="page">Home</a>
+      <a href="game.html" class="text-slate-300 hover:text-amber-400 transition">Game</a>
+      <a href="history.html" class="text-slate-300 hover:text-amber-400 transition">History</a>
     </nav>
+      <p class="w-full sm:w-auto text-sm text-slate-400">Player: <span id="current-player" class="font-semibold text-white">No player selected</span></p>
     </div>
     </header>
-    
-    <main class="mx-auto max-w-7xl px-4 py-4">
-        <h1>Players profiles</h1>
-        <form id="profile-form" class ="bg-slate-900 rounded-xl p-4 sm:p-6 space-y-4" >
-            <label for="nickname">Nickname</label>
-         <input type="text" id="nickname" name="nickname" minlength="3" maxlength="15" pattern="[A-Za-z0-9*]{3,15}" required 
-         class="block w-full rounded-lg border border-slate-600 p-3 ">
-         <span id="nickname-error" class="text-red-500 text-sm"></span>
-         <label for="avatar">Avatar</label>
-         <select id="avatar" name="avatar" required
-         class="block w-full rounded-lg border border-slate-600 bg-slate-950 p-3 text-white">
+
+    <main class="mx-auto max-w-7xl px-4 py-6 space-y-6">
+        <h1 class="text-2xl font-bold text-amber-400">Players profiles</h1>
+        <form id="profile-form" novalidate class ="bg-slate-900 rounded-xl p-4 sm:p-6 space-y-4" >
+            <h2 id="form-title" class="text-lg font-semibold">Create a profile</h2>
+            <div class="space-y-1">
+            <label for="nickname" class="block text-sm text-slate-300">Nickname</label>
+         <input type="text" id="nickname" name="nickname" minlength="3" maxlength="15" pattern="[A-Za-z0-9_]{3,15}" required
+         aria-describedby="nickname-help nickname-error" placeholder="e.g. Yanis_07"
+         class="block w-full rounded-lg border border-slate-600 bg-slate-950 p-3 text-white placeholder:text-slate-500 hover:border-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition">
+         <p id="nickname-help" class="text-xs text-slate-500">3 to 15 characters: letters, numbers or _</p>
+         <span id="nickname-error" class="block text-red-500 text-sm" aria-live="polite"></span>
+            </div>
+            <div class="space-y-1">
+         <label for="avatar" class="block text-sm text-slate-300">Avatar</label>
+         <select id="avatar" name="avatar" required aria-describedby="avatar-error"
+         class="block w-full rounded-lg border border-slate-600 bg-slate-950 p-3 text-white hover:border-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition">
             <option value="">choose an avatar</option>
-            <option value="dragon">Dragon</option>
-            <option value="knight">Knight</option>
-            <option value="wizard">Wizard</option>
-            <option value="shadow">Shadow</option>
+            <option value="dragon">🐉 Dragon</option>
+            <option value="knight">🛡️ Knight</option>
+            <option value="wizard">🧙 Wizard</option>
+            <option value="shadow">🥷 Shadow</option>
          </select>
-         <button type="submit"
-          class="w-full rounded-lg bg-amber-400 px-4 py-3 font-semibold text-slate-950">Create profile</button>
+         <span id="avatar-error" class="block text-red-500 text-sm" aria-live="polite"></span>
+            </div>
+         <div class="flex flex-col sm:flex-row gap-3">
+         <button type="submit" id="submit-profile"
+          class="w-full rounded-lg bg-amber-400 px-4 py-3 font-semibold text-slate-950 hover:bg-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 transition">Create profile</button>
+         <button type="button" id="cancel-edit"
+          class="hidden w-full rounded-lg border border-slate-600 px-4 py-3 font-semibold text-slate-300 hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 transition">Cancel</button>
+         </div>
         </form>
 
         <!-- select player -->
-         <label for="selecte-player"> Choose a player</label>
-         <select id="selected-player" class="w-full rounded-lg bg-slate-900 p-3">
+        <div class="space-y-1">
+         <label for="selected-player" class="block text-sm text-slate-300"> Choose a player</label>
+         <select id="selected-player" class="w-full rounded-lg border border-slate-600 bg-slate-900 p-3 hover:border-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 transition">
             <option value="">Select a player </option>
          </select>
-         
-       
-      <div id="players-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"></div>
+        </div>
 
-      <!-- gamesection -->
-       <section id="game" class="bg-slate-900 rounded-xl p-4 mt-6 space-y-4">
-         <h2 class="text-amber-400">Game Arena</h2>
-         <p id="round">Round: 1 / 12</p>
-         <p id="camp">Camp: Empereur</p>
-         <p id="score">Player: 0 | Computer: 0</p>
-         <button id="start-game" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
-            Start game
-         </button>
-         <div id="game-cards"class="flex flex-wrap gap-4">
-            <button data-card="empereur" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
-                Empereur
-            </button>
-            <button data-card="citoyen" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
-                Citoyen
-            </button>
-            <button data-card="esclave" class="bg-amber-400 text-slate-950 p-4 rounded-lg">
-                Esclave
-            </button>
-
-         </div>
-         <p id="game-result"></p>
-    
-       </section>
+      <div id="players-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </main>
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </body>
 </html>
