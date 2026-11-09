@@ -38,33 +38,58 @@ const computercardindex = game.computercards.findIndex(card=>card===computercard
    game.computercards.splice(computercardindex,1);
 
 
-
-
  const result = duel(playercard,computercard);
+      if(result==="equal"){
+         return game;
+     };
+
      if(result==="win"){
-        game.playerscore++;
-     }
-     if(result==="defeat"){
-        game.computerscore++;
-     }
+      if(game.camp==="esclave"){
+         game.playerscore +=5;
+      }else{
+        game.playerscore+=1;
+      }
+     };
+
+    if (result === "defeat") {
+    if (game.camp === "empereur") {
+        game.computerscore += 5;
+    } else {
+        game.computerscore += 1;
+    }
+}
      if(game.round===12){
         game.finished=true;
-     }else{
+     }else {
         game.round++;
-     }
+     };
      if(game.round === 4 || game.round === 7 || game.round === 10){
         if(game.camp ==="empereur"){
             game.camp ="esclave";
-            game.playercards=["esclave", "citoyen", "citoyen", "citoyen", "citoyen"];
-            game.computercards=["empereur", "citoyen", "citoyen", "citoyen", "citoyen"];
         }else{
             game.camp ="empereur";
-             game.playercards=["empereur", "citoyen", "citoyen", "citoyen", "citoyen"];
-             game.computercards= ["esclave", "citoyen", "citoyen", "citoyen", "citoyen"];
+        };
 
-        }
+     };
+     if (!game.finished) {
+    if (game.camp === "empereur") {
+        game.playercards = [
+            "empereur", "citoyen", "citoyen", "citoyen", "citoyen"
+        ];
 
-     }
+        game.computercards = [
+            "esclave", "citoyen", "citoyen", "citoyen", "citoyen"
+        ];
+    } else {
+        game.playercards = [
+            "esclave", "citoyen", "citoyen", "citoyen", "citoyen"
+        ];
+
+        game.computercards = [
+            "empereur", "citoyen", "citoyen", "citoyen", "citoyen"
+        ];
+    }
+}
      console.log("ROUND:", game.round);
 console.log("CAMP:", game.camp);
 console.log("RESULT:", result);
